@@ -12,6 +12,9 @@ a production environment.**
 ## Example
 
 ```perl6
+use v6;
+use Wkhtmltox::PDF;
+
 # Print library version
 my $version = Wkhtmltox::PDF.version;
 say "wkhtmltopdf version: $version";
