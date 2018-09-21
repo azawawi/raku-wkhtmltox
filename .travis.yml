@@ -1,0 +1,32 @@
+language: perl6
+
+os:
+  - linux
+#  - osx
+
+perl6:
+  - latest
+
+before_install:
+    # Display travis OS name
+  - echo $TRAVIS_OS_NAME
+
+  # Debian-based libwkhtmltox installation
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; WKHTMLTOX_ARCHIVE=wkhtmltox_0.12.5-1.trusty_amd64.deb; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/$WKHTMLTOX_ARCHIVE; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; sudo apt-get install -f -y ./$WKHTMLTOX_ARCHIVE; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; rm $WKHTMLTOX_ARCHIVE; fi
+
+  # TODO macOS libwkhtmltox installation
+  # - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew update               ; fi
+  # - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install libwkhtmltox ; fi
+
+install:
+  - rakudobrew build zef
+  - zef --depsonly install .
+  - zef install Test::META
+  - zef build .
+
+script:
+    - AUTHOR_TESTING=1 prove -ve "perl6 -Ilib"
+    - zef install .
