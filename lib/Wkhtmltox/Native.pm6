@@ -7,8 +7,7 @@ use NativeCall;
 
 sub lib {	
 	# TODO support macOS platform
-	# TODO support windows platform
-	return "/usr/local/lib/libwkhtmltox.so"
+	$*DISTRO.is-win ?? return 'C:\Program Files\wkhtmltopdf\bin\wkhtmltox.dll' !! return "/usr/local/lib/libwkhtmltox.so";
 }
 
 # Prototype... see pdf.h
