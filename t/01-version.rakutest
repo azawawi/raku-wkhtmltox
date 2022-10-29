@@ -7,5 +7,5 @@ plan 1;
 
 my $version = Wkhtmltox::PDF.version;
 
-diag $version.perl;
+diag $version.raku;
 ok $version ~~ Str, "Version is a string";

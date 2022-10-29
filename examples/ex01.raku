@@ -58,7 +58,7 @@ sub render-html($version) {
 						<img src="assets/images/camelia-logo.png" style="height: 100px;">
 					</td>
 					<td style="width:80%; text-align: center">
-						<h1>Perl 6 rocks</h1>
+						<h1>Raku rocks</h1>
 					</td>
 					<td style="width: 20%">
 						<img src="assets/images/camelia-logo.png" style="height: 100px;">

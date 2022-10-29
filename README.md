@@ -1,6 +1,6 @@
 # Wkhtmltox
-
- [![Build Status](https://travis-ci.org/azawawi/perl6-wkhtmltox.svg?branch=master)](https://travis-ci.org/azawawi/perl6-wkhtmltox) [![Build status](https://ci.appveyor.com/api/projects/status/github/azawawi/perl6-wkhtmltox?svg=true)](https://ci.appveyor.com/project/azawawi/perl6-wkhtmltox/branch/master)
+[![Actions
+Status](https://github.com/azawawi/raku-wkhtmltox/workflows/test/badge.svg)](https://github.com/azawawi/raku-wkhtmltox/actions)
 
 This modules converts HTML code to PDF or Image files using [`libwkhtmltox`](https://wkhtmltopdf.org/libwkhtmltox/) (aka `wkhtmltopdf`, `wkhtmltoimage`). It does not run `wkhtmltopdf` or `wkhtmltoimage` binaries thus
 no extra CPU/memory cost for each conversion operation. It is suitable for batch
@@ -11,7 +11,7 @@ a production environment.**
 
 ## Example
 
-```perl6
+```raku
 use v6;
 use Wkhtmltox::PDF;
 
@@ -29,7 +29,7 @@ say $pdf.get-global-setting("size.pageSize");
 $pdf.set-global-setting("size.pageSize", "A4");
 
 # Convert HTML to PDF
-my $html = "Perl 6 rocks!";
+my $html = "Raku rocks!";
 my $pdf-blob = $pdf.render($html);
 "sample.pdf".IO.spurt($pdf-blob) if $pdf-blob.defined;
 
@@ -52,19 +52,22 @@ $ zef install Wkhtmltox
 
 - To run tests:
 ```
-$ prove -ve "perl6 -Ilib"
+$ prove --ext .rakutest -ve "raku -I."
 ```
 
 - To run all tests including author tests (Please make sure
 [Test::Meta](https://github.com/jonathanstowe/Test-META) is installed):
 ```
 $ zef install Test::META
-$ AUTHOR_TESTING=1 prove -e "perl6 -Ilib"
+$ AUTHOR_TESTING=1 prove --ext .rakutest -ve "raku -I."
+
+# On windows
+$ $env:AUTHOR_TESTING=1; prove --ext .rakutest -ve "raku -I."
 ```
 
 ## Author
 
-Ahmad M. Zawawi, [azawawi](https://github.com/azawawi/) on #perl6
+Ahmad M. Zawawi, azawawi on #raku, https://github.com/azawawi/
 
 ## License
 
